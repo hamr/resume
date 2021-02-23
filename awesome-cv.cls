@@ -16,6 +16,19 @@
 % Class license:
 % LPPL v1.3c (http://www.latex-project.org/lppl)
 %
+% The following have been changed from the original:
+% - use fontawesome5 instead of fontawesome
+%   - `\faLinkedinSquare' -> `\faLinkedin'
+% - require roboto package
+% - use `inline' option for `enumitem'
+% - add environment environments for summary section
+%   - `cvitems1' for in-paragraph lists
+%   - `cvbox' for box text
+% - `8pt' -> `9pt' for `\entrypositionstyle'
+%
+% Author:
+% Robert Hamrick <rph@muxux.org>
+% https://github.com/hamr/resume
 
 
 %-------------------------------------------------------------------------------
@@ -49,7 +62,7 @@
 % Needed to make fixed length table
 \RequirePackage{array}
 % Needed to handle list environment
-\RequirePackage{enumitem}
+\RequirePackage[inline]{enumitem}
 % Needed to handle text alignment
 \RequirePackage{ragged2e}
 % Needed to configure page layout
@@ -74,7 +87,9 @@
 \RequirePackage{unicode-math}
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
-\RequirePackage{fontawesome}
+% \RequirePackage{fontawesome}
+\RequirePackage{fontawesome5}
+\RequirePackage{roboto}
 \RequirePackage[default,opentype]{sourcesanspro}
 % Needed for the photo ID
 \RequirePackage[skins]{tcolorbox}
@@ -201,7 +216,8 @@
 
 % For elements of entry
 \newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+% \newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
@@ -495,7 +511,8 @@
         {}%
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
-          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\acvHeaderIconSep\@linkedin}%
+          % \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedinSquare\acvHeaderIconSep\@linkedin}%
+          \href{https://www.linkedin.com/in/\@linkedin}{\faLinkedin\acvHeaderIconSep\@linkedin}%
         }%
       \ifthenelse{\isundefined{\@twitter}}%
         {}%
@@ -679,6 +696,41 @@
   \end{itemize}
   \end{justify}
   \vspace{-4.0mm}
+}
+
+% Define an environment for cvitems1 (in-paragraph list)
+\newenvironment{cvitems1}{%
+  \vspace{-1.4mm}
+  \begin{justify}
+  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+    % \setlength{\parskip}{0pt}
+    \renewcommand{\labelitemi}{\bullet}
+}{%
+  \end{itemize}
+  \end{justify}
+  % \vspace{-4.0mm}
+}
+
+% Define an environment for color box
+\newenvironment{cvbox}{%
+  % \begin{tcolorbox}[boxrule=0.1mm,arc=0.6mm,boxsep=-1mm]
+  % \begin{tcolorbox}[size=small]
+  \begin{tcolorbox}[
+    boxrule=0.1mm,
+    boxsep=1.0mm,
+    left=1.0mm,
+    right=1.0mm,
+    top=0.0mm,
+    bottom=0.0mm,
+    toptitle=0.0mm,
+    bottomtitle=0.0mm,
+    middle=0.5mm,
+    arc=0.5mm,
+    colback=black!2!white,
+    opacityback=0.99,
+    opacityframe=0.50]
+}{%
+  \end{tcolorbox}
 }
 
 
