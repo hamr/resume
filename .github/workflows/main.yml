@@ -19,22 +19,11 @@ jobs:
           root_file: resume.tex
           latexmk_use_xelatex: true
 
-      # - name: Upload resume.log
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: resume.log
-      #     path: resume.log
-      #     retention-days: 5
-
-      # - name: Upload resume.pdf
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: resume.pdf
-      #     path: resume.pdf
-      #     retention-days: 5
-
-  # upload:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - users: actions/
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          files: resume.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      # - name: Upload resume.log
           
