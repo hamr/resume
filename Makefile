@@ -1,4 +1,4 @@
-.PHONY: examples
+.PHONY: examples clean
 
 CC = xelatex
 EXAMPLES_DIR = examples
