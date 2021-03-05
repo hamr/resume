@@ -7,8 +7,11 @@ CV_DIR = examples/cv
 RESUME_SRCS = $(shell find $(RESUME_DIR) -name '*.tex')
 CV_SRCS = $(shell find $(CV_DIR) -name '*.tex')
 
-resume.pdf: resume.tex $(wildcard resume/*.tex) awesome-cv.cls .git/gitHeadInfo.gin
-	$(CC) -interaction=batchmode $<
+RESUME_IN = resume.tex $(wildcard resume/*.tex) awesome-cv.cls .git/gitHeadInfo.gin
+RESUME_OUT = resume.pdf resume.log resume.aux resume.fdb_latexmk resume.out resume.xdv
+
+resume.pdf: $(RESUME_IN)
+	$(CC) -interaction=nonstopmode $<
 
 examples: $(foreach x, coverletter cv resume, $x.pdf)
 
@@ -19,4 +22,5 @@ coverletter.pdf: $(EXAMPLES_DIR)/coverletter.tex
 	$(CC) -output-directory=$(EXAMPLES_DIR) $<
 
 clean:
-	rm -rf $(EXAMPLES_DIR)/*.pdf
+	-rm -rf $(RESUME_OUT)
+	# rm -rf $(EXAMPLES_DIR)/*.pdf
