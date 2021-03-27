@@ -21,7 +21,7 @@
 %   - `\faLinkedinSquare' -> `\faLinkedin'
 % - require roboto package
 % - use `inline' option for `enumitem'
-% - add environment environments for summary section
+% - add environments for summary section
 %   - `cvitems1' for in-paragraph lists
 %   - `cvbox' for box text
 % - `8pt' -> `9pt' for `\entrypositionstyle'
