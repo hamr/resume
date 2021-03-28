@@ -13,6 +13,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: generate gitHeadInfo.gin
+        run: make .git/gitHeadInfo.gin
+        shell: bash
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
