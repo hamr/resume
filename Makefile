@@ -1,4 +1,4 @@
-.PHONY: examples clean
+.PHONY: examples clean hooks
 
 CC = xelatex
 EXAMPLES_DIR = examples
@@ -12,6 +12,12 @@ RESUME_OUT = resume.pdf resume.log resume.aux resume.fdb_latexmk resume.out resu
 
 resume.pdf: $(RESUME_IN)
 	$(CC) -interaction=nonstopmode $<
+
+# Use phony target 'hooks' to run scripts/make-gitHeadInfo.gin every time.
+.git/gitHeadInfo.gin: hooks
+
+hooks:
+	scripts/make-gitHeadInfo.gin
 
 examples: $(foreach x, coverletter cv resume, $x.pdf)
 
