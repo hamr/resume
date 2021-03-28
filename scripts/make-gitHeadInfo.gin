@@ -15,8 +15,12 @@ set -o pipefail
 
 # Files and directories
 PROJECT_DIR="$(git rev-parse --show-toplevel)"
+PROJECT_BASENAME="$(basename $PROJECT_DIR)"
+# In case project is in / for some reason.
+PROJECT_BASENAME="${PROJECT_BASENAME%/}"
+
 TARGET="$PROJECT_DIR/.git/gitHeadInfo.gin"
-TMPFILE="$(mktemp -t $(basename $PROJECT_DIR).XXXXXX)"
+TMPFILE="$(mktemp -t ${PROJECT_BASENAME}.XXXXXX)"
 
 # Get the first tag found in the history from the current HEAD
 FIRSTTAG=$(git describe --tags --always --dirty='-*' 2>/dev/null)
