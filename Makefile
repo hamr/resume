@@ -8,7 +8,7 @@ RESUME_SRCS = $(shell find $(RESUME_DIR) -name '*.tex')
 CV_SRCS = $(shell find $(CV_DIR) -name '*.tex')
 
 RESUME_IN = resume.tex $(wildcard resume/*.tex) awesome-cv.cls .git/gitHeadInfo.gin
-RESUME_OUT = resume.pdf resume.log resume.aux resume.fdb_latexmk resume.out resume.xdv
+RESUME_OUT = resume.pdf resume.aux resume.fdb_latexmk resume.fls resume.log resume.out resume.xdv
 
 resume.pdf: $(RESUME_IN)
 	$(CC) -interaction=nonstopmode $<
