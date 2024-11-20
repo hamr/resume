@@ -11,17 +11,25 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: generate gitHeadInfo.gin
         run: make .git/gitHeadInfo.gin
         shell: bash
 
       - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
           root_file: resume.tex
           latexmk_use_xelatex: true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: |
+            resume.log
+            resume.out
+            resume.pdf
 
       - name: Release
         uses: softprops/action-gh-release@v1
