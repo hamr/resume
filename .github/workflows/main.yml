@@ -14,18 +14,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: work around weird permissions problem 
+      # the following make command installs a script under .git, which makes git
+      # complain about detecting dubious ownership in repository
+      - name: work around weird permissions problem
         run: git config --global --add safe.directory '*'
 
-      - name: generate gitHeadInfo.gin
-        run: make .git/gitHeadInfo.gin
-        shell: bash
-
       - name: Compile LaTeX document
-        # uses: xu-cheng/latex-action@v3
-        # with:
-        #   root_file: resume.tex
-        #   latexmk_use_xelatex: true
         run: make
 
       - name: Upload artifacts
