@@ -626,6 +626,22 @@
   \end{tabular*}%
 }
 
+% Define a short entry of cv information
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}
+\newcommand*{\cventryshort}[4]{%
+  \vspace{2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+  \end{tabular*}%
+  \vspace{-4.0mm}
+}
+
+
 % Define an environment for cvsubentry
 \newenvironment{cvsubentries}{%
   \begin{center}
