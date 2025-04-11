@@ -582,6 +582,7 @@
   \sectionstyle{#1}
   \phantomsection
   \color{gray}\vhrulefill{0.9pt}
+  \vspace{-1.0mm}
 }
 
 % Define a subsection for CV
@@ -624,6 +625,7 @@
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
+  \vspace{-5.0mm}
 }
 
 % Define a short entry of cv information
@@ -638,7 +640,7 @@
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
   \end{tabular*}%
-  \vspace{-4.0mm}
+  \vspace{-5.0mm}
 }
 
 
