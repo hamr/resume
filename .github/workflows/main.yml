@@ -37,4 +37,3 @@ jobs:
           files: resume.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      # - name: Upload resume.log
-          
