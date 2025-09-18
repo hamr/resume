@@ -625,7 +625,23 @@
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
-  \vspace{-5.0mm}
+  % \vspace{-5.0mm}
+}
+
+\newcommand*{\cventrymod}[5]{%
+  % https://github.com/posquit0/Awesome-CV/issues/532
+  % \vspace{2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+  \end{tabular*}%
+  % \descriptionstyle{#5}
+  % \vspace{-5.0mm}
 }
 
 % Define a short entry of cv information
@@ -724,6 +740,18 @@
   \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
     % \setlength{\parskip}{0pt}
     \renewcommand{\labelitemi}{\bullet}
+}{%
+  \end{itemize}
+  \end{justify}
+  % \vspace{-4.0mm}
+}
+
+\newenvironment{cvitems2}{%
+  % \vspace{-1.4mm}
+  \begin{justify}
+  \begin{itemize}[leftmargin=2ex, nosep, noitemsep]
+    \setlength{\parskip}{0pt}
+    % \renewcommand{\labelitemi}{\bullet}
 }{%
   \end{itemize}
   \end{justify}
