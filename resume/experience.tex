@@ -2,99 +2,86 @@
 
 %% \begin{cventries}
 
-  \cventry
-  {HPC Systems Software Engineer}
-  {National Energy Research Scientific Computing Center (NERSC)}
-  {Lawrence Berkeley National Lab}
-  {2024--present}
+  \cventryflow
   {
-    \begin{cvitems}
-    \item{
-        % Responsible for developing, managing, and troubleshooting NERSC's production system \textit{Perlmutter} as a member of the \textit{Computing Systems Group}.
-        As a member of Computational Systems Group, responsible for NERSC's production system \textit{Perlmutter}.
-      }
-    \begin{cvitems2}
-    \item Apply wide breadth of skills to administering 4864 compute nodes, 40 user login nodes, 48 DVS nodes, Lustre (ClusterStor), Ceph (Nexus), Slingshot interconnect, Slurm scheduler, and Kubernetes-based system management (CSM).
-    \item Automate system configuration and operational tasks.
-    \item Pursue long-term fixes with vendors for problems with system software and integrations.
-    \item Test, integrate, automate, and deploy software updates on monthly cycle.
-    \end{cvitems2}
-    \item As deputy L2 for the NERSC10 project's System Acquisition and Build group, responsible for project management and coordination tasks for NERSC's next system \textit{Doudna}.
-    \end{cvitems}
-  }
-
-  \cventry
-  {Systems Engineer, Senior}  % Job title
-  {Pixar Animation Studios}  % Organization
-  {Emeryville}  % Location
-  {2021--2024}  % Date(s)
-  {
-    \begin{cvitems}  % Description(s) of tasks/responsibilities
-    \item{
-      Responsible for Linux-based platform for compute farm and user workstations,
-      including bare-metal servers, KVM hypervisors and guests, Nvidia Grid, Teradici, RHEL-based OS.
+    \roleflow{
+      \node[role] (sse) {HPC Systems Software Engineer};
+      \node[left=1cm of sse] (start) {};
+      \node[right=1cm of sse] (end) {};
+      \draw[arrow] (sse) -- (start);
+      \roleArrowEnd{sse}{end}{2024}
     }
-    \item{Automate reporting to inform ongoing operations and structure future plans.}
-    %% \item mentor and train team members
-    \item{Troubleshoot OS-level problems for Application Developers, QA, Support, Desktop.}
-    \end{cvitems}
-  }
-
-  \cventry
-  {Systems Administrator, Senior}  % Job title
-  %% {Pixar Animation Studios}  % Organization
-  %% {Emeryville/Remote}  % Location
-  {}
-  {}
-  {2018--2021}  % Date(s)
-  {
-    \begin{cvitems}  % Description(s) of tasks/responsibilities
-    \item {Wrote tooling to compose, test, and deploy releases of RHEL-based OS runtime and Ansible-driven configuration.}
-    \item {Updated Linux workstation platform on regular schedule (\textasciitilde{}2200 hosts, 2x/month).}
-    \end{cvitems}
-  }
-
-  \cventry
-  {Systems Administrator}
-  %% {Pixar Animation Studios}
-  %% {Emeryville}
-  {}
-  {}
-  {2014--2017}
+  } % Job title
+  {National Energy Research Scientific Computing Center (NERSC)}  % Organization
+  {Lawrence Berkeley National Lab}  % Location
+  {2024--now}  % Date(s)
   {
     \begin{cvitems}
-    \item {Collaborated on design and implementation of virtualized, Teradici-connected Linux workstations.}
-    \item {Worked with artists to solve usability issues during migration to remote platform.}
-    \item {Ported in-house configuration management to Ansible.}
+    \item Own production operations for Perlmutter: 4864 compute nodes, 7168 Nvidia GPUs, 40 login nodes, Lustre and Ceph storage, Slingshot interconnect, Slurm, and Kubernetes-based system management.
+    \item Automate system configuration and operational tasks to reduce manual toil.
+    \item Pursue long-term resolution of system software issues through vendor engagement.
+    \item Drive monthly software update pipeline toward CI/CD:
+      coordination across teams, testing, integration, automation, and deployment.
+    \item Lead cross-functional coordination across engineering teams, vendors, and stakeholders for Doudna, NERSC's next production system.
+    \item Mentor junior staff and author internal documentation and tutorials.
+    \end{cvitems}
+  }
+
+  \cventryflow
+  {
+    \roleflow{
+      \node[role] (se) {Systems Engineer, Sr};
+      \node[role, right=of se] (ssa) {Systems Administrator, Sr};
+      \node[role, right=of ssa] (sa) {Systems Administrator};
+      \node[left=of se] (start) {};
+      \node[right=of sa] (end) {};
+      \roleArrow{sa}{ssa}{2018}
+      \roleArrow{ssa}{se}{2021}
+      \roleArrowEnd{se}{start}{2024}
+      \roleArrow{sa}{end}{2014}
+    }
+  }
+  {Pixar Animation Studios}
+  {Emeryville}
+  {2008--2024}
+  {
+    \begin{cvitems}
+    \item Co-developed and maintained a Linux-based virtual workstation platform for \char`~1000 artists and engineers, migrating users from under-desk workstations to KVM-hosted virtual machines.
+    \item Increased compute farm capacity by \~{}10-25\% by running virtual compute nodes on workstation hypervisors during off-hours.
+    \item Collaborated on improvements to performance and reliability, including vCPU pinning, NUMA balancing, GPU support via PCI passthrough and Nvidia Grid vGPUs, provisioning automation, and scheduling logic to safely co-locate virtual compute nodes with active user workstations.
+    \item Developed and maintained OS release and configuration pipeline for \~{}2200 workstation and hypervisor hosts: composing, testing, and deploying RHEL-based runtime and Ansible-driven configuration on a biweekly cadence.
+    \item Ported \~{}4000-line in-house Python configuration management system to Ansible over several years, writing custom modules and plugins to add missing upstream functionality.
+    % \item Ensured extensibility for projects like the virtual workstation platform while maintaining production stability throughout the transition.
+    \item Provisioned, configured, and triaged hardware issues for a \~{}1000-1700 node Linux compute farm.
+    \item Built automated reporting pipeline using Python, Pandas, and Hugo to collect, transform, and publish workstation inventory and compute farm availability data, informing resource planning and allocation decisions.
+    % \item Collaborated with Application Development and QA teams to investigate workstation stability and performance issues, including RAM, CPU, network, and storage bottlenecks and regressions in third-party kernel drivers such as Nvidia's.
+    % \item Served as escalation path for Linux desktop support team, diagnosing configuration problems and distributed systems issues affecting workstation availability.
+    \item Investigated workstation stability and performance issues for Application Development and QA teams,
+      including hardware bottlenecks and kernel driver regressions. Served as escalation path for the Linux desktop support team.
     \end{cvitems}
   }
 
   \cventry
-  {Production Support Engineer, Lead}
-  %% {Pixar Animation Studios}
-  %% {Emeryville}
-  {}
-  {}
-  {2012--2014}
   {
-    \begin{cvitems}
-    \item {Advocated for production artists having problems with applications or systems infrastructure.}
-    \item {Instituted queue reviews to encourage task completion and balance engineer workloads.}
-    \item {Scripted common workarounds and automated configuration to reduce labor for common tasks.}
-    \end{cvitems}
+    \roleflow{
+      \node[role] (psl) {Production Support Engineer, Lead};
+      \node[role, right=1cm of psl] (ps) {Production Support Engineer};
+      \node[left=1cm of psl] (start) {};
+      \node[right=1cm of ps] (end) {};
+      \roleArrow{ps}{psl}{2012}
+      \roleArrow{psl}{start}{2014}
+      \roleArrowEnd{ps}{end}{2008}
+    }
   }
-
-  \cventry
-  {Production Support Engineer}
-  %% {Pixar Animation Studios}
-  %% {Emeryville}
   {}
   {}
-  {2008--2012}
+  {}
   {
     \begin{cvitems}
-    \item {Supported desktop Linux users, troubleshoot hardware, os, and application-level problems, escalating to other groups as needed.}
-    \item {\textit{Keep animators animating.}}
+    \item Provided Linux desktop support for \char`~1000 artists and engineers, troubleshooting hardware, OS, and application-level problems.
+      Advocated for users to ensure their issues received attention from the appropriate engineering teams.
+    \item Scripted common workarounds and automated configuration tasks to reduce manual labor.
+    \item Grew into lead role for a 4-5 person support team, instituting queue reviews and process improvements to improve support quality, task completion, and group cohesion.
     \end{cvitems}
   }
 

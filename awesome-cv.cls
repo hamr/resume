@@ -103,6 +103,9 @@
   pdfsubject={},
   pdfkeywords={}
 }
+% hamr: for roleflow
+\RequirePackage{tikz}
+\usetikzlibrary{shapes, arrows.meta, positioning}
 
 
 %-------------------------------------------------------------------------------
@@ -210,14 +213,16 @@
 \newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em}\headerfont\color{text} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
-\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+% \newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+\newcommand*{\sectionstyle}[1]{{\fontsize{15pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
 % For elements of entry
 \newcommand*{\entrytitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 % \newcommand*{\entrypositionstyle}[1]{{\fontsize{8pt}{1em}\bodyfont\scshape\color{graytext} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\entrypositionfont}{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}}
+\newcommand*{\entrypositionstyle}[1]{{\entrypositionfont #1}}
 \newcommand*{\entrydatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 \newcommand*{\descriptionstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
@@ -236,7 +241,8 @@
 \newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 
 % For elements of skill
-\newcommand*{\skilltypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+% \newcommand*{\skilltypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\skilltypestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{darktext} #1}}
 \newcommand*{\skillsetstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{text} #1}}
 
 % For elements of the cover letter
@@ -585,6 +591,14 @@
   \vspace{-1.0mm}
 }
 
+\newcommand{\cvsectionstar}[1]{%
+  \vspace{\acvSectionTopSkip}
+  \sectionstyle{#1}*
+  \phantomsection
+  \color{gray}\vhrulefill{0.9pt}
+  \vspace{-1.0mm}
+}
+
 % Define a subsection for CV
 % Usage: \cvsubsection{<subsection-title>}
 \newcommand{\cvsubsection}[1]{%
@@ -603,6 +617,16 @@
   \par
   \vspace{2mm}
 }
+
+\newenvironment{cvline}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-3mm}
+  \paragraphstyle
+}{%
+  \par
+  % \vspace{2mm}
+}
+
 
 % Define an environment for cventry
 \newenvironment{cventries}{%
@@ -644,6 +668,19 @@
   % \vspace{-5.0mm}
 }
 
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
+\newcommand*{\cventryflow}[5]{%
+  \vspace{2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 6cm} R{6cm}}
+    \entrytitlestyle{#2} & \entrylocationstyle{#4, #3} \\
+    \multicolumn{2}{L{\textwidth}}{\entrypositionstyle{#1}} \\
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+  \end{tabular*}%
+  % \vspace{-5.0mm}
+}
+
 % Define a short entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cventryshort}[4]{%
@@ -659,6 +696,15 @@
   \vspace{-5.0mm}
 }
 
+\newcommand*{\cventryline}[4]{%
+  % \vspace{1.0mm}
+  \vspace{0.0mm}
+  \setlength\tabcolsep{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \entrypositionstyle{#1, #2} & \entrydatestyle{#4} \\
+  \end{tabular*}%
+  \vspace{-7.0mm}
+}
 
 % Define an environment for cvsubentry
 \newenvironment{cvsubentries}{%
@@ -831,3 +877,35 @@
       \letterenclosurestyle{\@letterenclname: \@letterenclosure} \\
     }
 }
+
+% \newcommand*{\roleflowstyle}{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext}}
+\newcommand*{\roleflowdatestyle}[1]{{\fontsize{8pt}{1em}\bodyfontlight\upshape\color{graytext} #1}}
+
+\newcommand{\roleflow}[1]{%
+  \begin{tikzpicture}[
+    baseline,
+    node distance=1cm,
+    role/.style={
+      % draw=none,
+      draw,
+      rounded corners,
+      % fill=lightgray!05,
+      fill=white,
+      inner sep=4pt,
+      font=\entrypositionfont
+    },
+    arrow/.style={
+      % -Stealth,
+      % -Circle[open],
+      % thick
+      thin,
+      color=graytext
+    }
+  ]
+  #1
+  \end{tikzpicture}%
+}
+
+\newcommand{\roleArrow}[3]{\draw[arrow] (#1) -- (#2) node[pos=0.5, circle, draw=graytext, fill=white, inner sep=1.25pt] {} node[pos=0.5, below] {\roleflowdatestyle{#3}};}
+
+\newcommand{\roleArrowEnd}[3]{\draw[-{Circle[open]}] (#1) -- (#2) node[near end, below] {\roleflowdatestyle{#3}};}
