@@ -908,4 +908,4 @@
 
 \newcommand{\roleArrow}[3]{\draw[arrow] (#1) -- (#2) node[pos=0.5, circle, draw=graytext, fill=white, inner sep=1.25pt] {} node[pos=0.5, below] {\roleflowdatestyle{#3}};}
 
-\newcommand{\roleArrowEnd}[3]{\draw[-{Circle[open]}] (#1) -- (#2) node[near end, below] {\roleflowdatestyle{#3}};}
+% \newcommand{\roleArrowEnd}[3]{\draw[-{Circle[open]}] (#1) -- (#2) node[near end, below] {\roleflowdatestyle{#3}};}
